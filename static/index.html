@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page pour faire des tests pendant la lecture du livre Premiers pas en CSS 3 et HTML 5</title>
+</head>
+
+<body>
+    <article>
+        <form oninput="calcul.value=num1.value*num2.value">
+            <h1>Affichage du résultat d'un calcul (erroné dans le livre p102, mais corrigé par <a href="https://www.useragentman.com/blog/2011/05/10/is-onforminput-deprecated-in-html5-forms-and-why-should-i-care-anyways/">internet</a>)</h1>
+            <label for="num1">Premier nombre</label>
+            <input type="number" name="num1" />
+            <label for="num2">Second nombre</label>
+            <input type="number" name="num2" />
+            <label for="calcul">Résultat du calcul du produit</label>
+            <output name="calcul" />
+        </form>
+    </article>
+    <p>
+        Les attributs name dans les forms sont pratiques pour accéder aux objets. Par exemple si la form a pour nom "f1", on peut coder :
+    </p>
+    <pre><code>
+        document.addEventListener("input",
+          function(e) {
+            if (document.forms.f1 == e.target.form)
+              e.target.form.calcul.value =
+                parseFloat(e.target.form.num1.value) * parseFloat(e.target.form.num2.value);
+        }, true);
+    </code></pre>
+    <p>C'est marrant comment les champs gardent leur valeur sur un refresh</p>
+    <hr />
+    <ul>
+        <li><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">HTML elements reference</a></p></li>
+        <li><p><a href="https://bestvpn.org/html5demos/">HTML 5 Demos and Examples</a></p></li>
+        <li><p><a href="https://validator.w3.org/">W3C Markup validation service</a></p></li>
+    </ul>
+    <hr />
+    <h1>feuilles de styles</h1>
+    <p>Pour les feuilles externes, il faut écrire</p>
+    <pre><code>
+        &lt;link rel="stylesheet" href="style.css"&gt;
+    </code></pre>
+    <p>Le sélecteur p.chapeau s'applique aux éléments p ayant la classe chapeau.
+        Pour les id, on utilise #.
+    </p>
+    <p>Il existe des pseudo-classes :hover :link(lien non visité) :visited(lien visité)
+        :active(?) :first-child :focus(qui a le focus) :lang(fr)
+    </p>
+    <p>
+        Il existe des pseudo-éléments avec ::, par exemple p::first-letter {font-size: 150%;}<br />
+        ::before ::after
+    </p>
+    <p>
+        On peut combiner avec la virgule (,) pour faire des "ou". Avec un espace pour indiquer
+        une hierarchie (div p signifie un paragraphe dans un div).<br />
+        Avec un &gt; pour indiquer une imbrication directe.<br />
+        Avec un + pour indiquer une juxtaposition h1 + h2 {} s'applique à chaque h2 qui suit un h1.
+    </p>
+    <p>
+        Sélecteur d'attribut : input[type=button] {} s'applique aux input de type button
+    </p>
+    <p>
+        Pour la priorité, on regarde d'abord si c'est local ou important, ensuite on regarde si
+        il y a un id, ensuite, on compte le nombre de classes, ensuite le nombre d'éléments.
+    </p>
+    <hr />
+    <h1>Unités de taille courante</h1>
+    <ul>
+        <li><p><dfn>rem</dfn>Largeur d'un M comme dans l'élément racine (html)</p></li>
+        <li><p><dfn>em</dfn>Largeur d'un M comme dans l'élément parent</p></li>
+        <li><p><dfn>px</dfn>pixel (1/72 ou 1/96 de pouce)</p></li>
+        <li><p><dfn>%</dfn></p>pourcentage. Pour les fonts 100% = 1em</li>
+        <li><p><dfn>ex</dfn>hauteur d'une minuscule comme x</p></li>
+        <li><p><dfn>ch</dfn>largeur du chiffre 0</p></li>
+        <li><p><dfn>vw</dfn>1% de la viewport width (largeur de la fenêtre)</p></li>
+        <li><p><dfn>vh</dfn>1% de la viewport height (hauteur de la fenêtre)</p></li>
+        <li><p><dfn>vmin</dfn>plus petite valeur de vw et vh</p></li>
+        <li><p><dfn>vmax</dfn>plus grande valeur de vw et vh</p></li>
+    </ul>
+    <hr />
+    <h1>Mise en forme de caractères</h1>
+    <p style="font-family: Arial, Verdana, sans-serif">font-family: Arial, Verdana, sans-serif</p>
+    <p style="font-family: &quot;Times New Roman&quot;, serif">font-family: "Times New Roman", serif</p>
+    <p style="font-family: &quot;Courier New&quot;, monospace">font-family: "Courier New", monospace</p>
+    <p style="font-size: 150%; color: blue">font-size: 150%; color: blue</p>
+    <p style="font-weight: bold; font-style: italic">font-weight: bold; font-style: italic</p>
+    <p>text-decoration <span style="text-decoration: underline">underline</span>
+        <span style="text-decoration: overline">overline</span>
+        <span style="text-decoration: line-through">line-through</span>
+        <span style="text-decoration: blink">blink</span></p>
+    <p>text-transform: <span style="text-transform: uppercase">UpperCase</span>
+        <span style="text-transform: lowercase">LowerCase</span>
+        <span style="text-transform: capitalize">capitalize (each word)</span>
+    </p>
+    <p style="font-variant: small-caps">font-variant: small-caps|normal</p>
+    <p style="background-color: #555555">background-color: #555555</p>
+    <p>vertical-align baseline(default)|sub(indice)|super(exposant)|top|middle|bottom|text-top|text-bottom|%
+        <span style="vertical-align: bottom; font-size: 70%">bottom</span>
+        <span style="vertical-align: top; font-size: 70%">top</span>
+        <span style="vertical-align: middle">middle</span>
+        <span style="vertical-align: -60%">-60%</span>
+    </p>
+    <p style="font: bold italic 1.2rem Verdana, sans-serif">raccource font: bold italic 1.2rem Verdana, sans-serif</p>
+</body>
+
+</html>
